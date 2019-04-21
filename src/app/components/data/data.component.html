@@ -2,53 +2,57 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
-  <div>
 
-    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.nombre.valid}">
+  <div formGroupName="nombrecompleto">
+
+
+    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls['nombrecompleto'].controls['nombre'].valid}">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
         <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
 
-        <div *ngIf="forma.controls['nombre'].errors?.required" class="form-control-feedback">
+        <div *ngIf="!!forma.get('nombrecompleto.nombre').errors?.required" class="form-control-feedback">
           El Nombre es requerido
         </div>
 
-        <div *ngIf="forma.controls['nombre'].errors?.minlength" class="form-control-feedback">
+        <div *ngIf="!!forma.get('nombrecompleto.nombre').errors?.minlength" class="form-control-feedback">
           El Campo requiere minimo 3 Caracteres
         </div>
 
       </div>
     </div>
 
-    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.apellido.valid}">
+    <!-- [ngClass]="{'has-danger': !forma.controls.apellido.valid}" -->
+    <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
         <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
 
-        <div *ngIf="forma.controls['apellido'].errors?.required" class="form-control-feedback">
-          El Apellido es requerido
-        </div>
+        <!-- <div *ngIf="forma.controls['apellido'].errors?.required" class="form-control-feedback">
+            El Apellido es requerido
+            </div> -->
 
       </div>
     </div>
 
   </div>
 
-  <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.correo.valid}">
+  <!-- [ngClass]="{'has-danger': !forma.controls.correo.valid}" -->
+  <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
 
       <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
 
-      <div *ngIf="forma.controls['correo'].errors?.required">
+      <!-- <div *ngIf="forma.controls['correo'].errors?.required">
         El Campo es Obligatorio
       </div>
 
       <div *ngIf="forma.controls['correo'].errors?.pattern">
         El Campo debe cumplir con cierto formato
-      </div>
+      </div> -->
 
     </div>
   </div>
