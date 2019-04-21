@@ -5,6 +5,9 @@ interface Usuario {
   nombre: string;
   apellido: string;
   correo: string;
+  paises: [];
+  sexos: "Hombre";
+  acepta: boolean;
 }
 
 @Component({
@@ -22,8 +25,25 @@ export class TemplateComponent {
   usuario: Usuario = {
     nombre: null,
     apellido: null,
-    correo: null
+    correo: null,
+    paises: [],
+    sexos: "Hombre",
+    acepta: false
   };
+
+  paises = [
+    {
+      codigo: "CRI",
+      nombre: "Costa Rica"
+    },
+    {
+      codigo: "ESP",
+      nombre: "España"
+    }
+  ];
+
+  sexos = ["Hombre", "Mujer"];
+
   constructor() {}
 
   guardar(forma: NgForm) {
