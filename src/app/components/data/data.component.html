@@ -1,46 +1,69 @@
-<h4>Formularios <small>template</small></h4>
+<h4>Formularios <small>Data</small></h4>
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
-    <div>
+  <div>
 
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Nombre</label>
-            <div class="col-8">
+    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.nombre.valid}">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
-            </div>
+        <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+
+        <div *ngIf="forma.controls['nombre'].errors?.required" class="form-control-feedback">
+          El Nombre es requerido
         </div>
 
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Apellido</label>
-            <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
-            </div>
+        <div *ngIf="forma.controls['nombre'].errors?.minlength" class="form-control-feedback">
+          El Campo requiere minimo 3 Caracteres
         </div>
 
+      </div>
     </div>
 
-    <div class="form-group row">
-        <label class="col-2 col-form-label">Correo</label>
-        <div class="col-md-8">
+    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.apellido.valid}">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
 
-            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+        <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+
+        <div *ngIf="forma.controls['apellido'].errors?.required" class="form-control-feedback">
+          El Apellido es requerido
         </div>
+
+      </div>
     </div>
 
+  </div>
+
+  <div class="form-group row" [ngClass]="{'has-danger': !forma.controls.correo.valid}">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+
+      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+
+      <div *ngIf="forma.controls['correo'].errors?.required">
+        El Campo es Obligatorio
+      </div>
+
+      <div *ngIf="forma.controls['correo'].errors?.pattern">
+        El Campo debe cumplir con cierto formato
+      </div>
+
+    </div>
+  </div>
 
 
-    <div class="form-group row">
-        <label class="col-2 col-form-label">&nbsp;</label>
-        <div class="input-group col-md-8">
-            <button type="submit" class="btn btn-outline-primary">
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
         Guardar
       </button>
-        </div>
     </div>
+  </div>
 
-    {{ forma.valid }}
+  {{ forma.valid }}
 
 </form>
