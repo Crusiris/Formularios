@@ -1,25 +1,35 @@
 <h4>Formularios <small>Data</small></h4>
-<hr>
+<hr />
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
-
-
   <div formGroupName="nombrecompleto">
-
-
-    <div class="form-group row" [ngClass]="{'has-danger': !forma.controls['nombrecompleto'].controls['nombre'].valid}">
+    <div
+      class="form-group row"
+      [ngClass]="{
+        'has-danger': !forma.controls['nombrecompleto'].controls['nombre'].valid
+      }"
+    >
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Nombre"
+          formControlName="nombre"
+        />
 
-        <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
-
-        <div *ngIf="!!forma.get('nombrecompleto.nombre').errors?.required" class="form-control-feedback">
+        <div
+          *ngIf="!!forma.get('nombrecompleto.nombre').errors?.required"
+          class="form-control-feedback"
+        >
           El Nombre es requerido
         </div>
 
-        <div *ngIf="!!forma.get('nombrecompleto.nombre').errors?.minlength" class="form-control-feedback">
+        <div
+          *ngIf="!!forma.get('nombrecompleto.nombre').errors?.minlength"
+          class="form-control-feedback"
+        >
           El Campo requiere minimo 3 Caracteres
         </div>
-
       </div>
     </div>
 
@@ -27,24 +37,30 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
-
-        <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Apellido"
+          formControlName="apellido"
+        />
 
         <!-- <div *ngIf="forma.controls['apellido'].errors?.required" class="form-control-feedback">
             El Apellido es requerido
             </div> -->
-
       </div>
     </div>
-
   </div>
 
   <!-- [ngClass]="{'has-danger': !forma.controls.correo.valid}" -->
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
-
-      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+      <input
+        class="form-control"
+        type="email"
+        placeholder="Correo electrónico"
+        formControlName="correo"
+      />
 
       <!-- <div *ngIf="forma.controls['correo'].errors?.required">
         El Campo es Obligatorio
@@ -53,22 +69,50 @@
       <div *ngIf="forma.controls['correo'].errors?.pattern">
         El Campo debe cumplir con cierto formato
       </div> -->
-
     </div>
   </div>
 
   <div class="form-group row">
-    <label class="col-2 col-form-label">Correo</label>
-    <div class="col-md-8" formArrayName="pasatiempo">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        type="password"
+        placeholder="Password"
+        formControlName="password1"
+      />
+    </div>
+  </div>
 
-      <input *ngFor="let pasatiempo of forma.controls['pasatiempo'].controls; let i=index" [formControlName]="i"
-        type="text" class="form-control">
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repetir Password</label>
+    <div class="col-md-8">
+      <input
+        class="form-control"
+        type="password"
+        placeholder="Repetir Password"
+        formControlName="password2"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pasatiempos</label>
+    <div class="col-md-8" formArrayName="pasatiempo">
+      <input
+        *ngFor="
+          let pasatiempo of forma.controls['pasatiempo'].controls;
+          let i = index
+        "
+        [formControlName]="i"
+        type="text"
+        class="form-control"
+      />
     </div>
 
-    <button (click)="agregarPasatiempo ()" type="button" class="btn btn-primary">
+    <button (click)="agregarPasatiempo()" type="button" class="btn btn-primary">
       Nuevo
     </button>
-
   </div>
 
   <div class="form-group row">
@@ -81,5 +125,4 @@
   </div>
 
   {{ forma.valid }}
-
 </form>

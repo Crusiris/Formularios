@@ -28,7 +28,7 @@ export class DataComponent {
           Validators.required,
           Validators.minLength(3)
         ]),
-        apellido: new FormControl("", Validators.required)
+        apellido: new FormControl("", [Validators.required, this.noHerrera])
       }),
 
       correo: new FormControl("", [
@@ -38,11 +38,20 @@ export class DataComponent {
 
       pasatiempo: new FormArray([
         new FormControl("Correr", Validators.required)
-      ])
+      ]),
+
+      password1: new FormControl("", Validators.required),
+      password2: new FormControl()
     });
 
     // con esta instruccion cargo la data en el formulario
     // this.forma.setValue(this.usuario);
+
+    // ESTA ES OTRA FORMA DE HACER LAS VALIDACIONES
+    this.forma.controls["password2"].setValidators([
+      Validators.required,
+      this.noIgual.bind(this.forma)
+    ]);
   }
 
   agregarPasatiempo() {
@@ -51,16 +60,36 @@ export class DataComponent {
     );
   }
 
+  noHerrera(control: FormControl): { [s: string]: boolean } {
+    if (control.value === "herrera") {
+      return {
+        noherrera: true
+      };
+    }
+    return null;
+  }
+
+  noIgual(control: FormControl): { [s: string]: boolean } {
+    // console.log(this);
+    let forma: any = this;
+    if (control.value !== forma.controls["password1"].value) {
+      return {
+        noIguales: true
+      };
+    }
+    return null;
+  }
+
   guardarCambios() {
     console.log(this.forma.value);
     console.log(this.forma);
 
-    this.forma.reset({
-      nombrecompleto: {
-        nombre: "",
-        apellido: ""
-      },
-      correo: ""
-    });
+    // this.forma.reset({
+    //   nombrecompleto: {
+    //     nombre: "",
+    //     apellido: ""
+    //   },
+    //   correo: ""
+    // });
   }
 }
