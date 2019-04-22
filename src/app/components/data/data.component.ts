@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Observable } from "rxjs";
-import { resolve, reject } from "q";
 
 @Component({
   selector: "app-data",
