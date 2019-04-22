@@ -2,9 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
+## Layout One
+
+![Formularios](https://github.com/Crusiris/Formularios/blob/master/src/assets/img/FormularioData.PNG)
+
 ## Layout two
 
-![AuthAppp](https://github.com/Crusiris/Auth0aPP/blob/master/src/assets/protegidaDeactivated.PNG)
+![Formularios](https://github.com/Crusiris/Formularios/blob/master/src/assets/img/FormularioTemplateVacio.PNG)
+
+## Layout three
+
+![Formularios](https://github.com/Crusiris/Formularios/blob/master/src/assets/img/FormularioTemplateValidado.PNG)
 
 ## Installation
 
